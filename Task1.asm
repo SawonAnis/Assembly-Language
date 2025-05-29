@@ -8,34 +8,34 @@
 
 .code
 main:
-    mov ax, @data      ; Initialize data segment
+    mov ax, @data     
     mov ds, ax
 
     ; Display prompt
     lea dx, prompt
-    mov ah, 09h        ; Display string
+    mov ah, 09h       
     int 21h
 
     ; Take input character
-    mov ah, 01h        ; Input character
+    mov ah, 01h       
     int 21h
-    mov bl, al         ; Store the input character in BL for processing
+    mov bl, al       
 
     ; Check if the character is an alphabet (A-Z or a-z)
     cmp bl, 'A'
-    jl not_letter      ; If less than 'A', not a letter
+    jl not_letter   
     cmp bl, 'Z'
     jg check_lower
-    jmp convert        ; If in A-Z range, convert
+    jmp convert      
 
 check_lower:
     cmp bl, 'a'
-    jl not_letter      ; If less than 'a', not a letter
+    jl not_letter     
     cmp bl, 'z'
-    jg not_letter      ; If greater than 'z', not a letter
+    jg not_letter     
 
 convert:
-    xor bl, 0010_0000b ; Toggle case using XOR with 32
+    xor bl, 0010_0000b 
 
     ; Display result
     lea dx, newline
@@ -47,9 +47,9 @@ convert:
     int 21h
 
     mov dl, bl
-    mov ah, 02h        ; Display character
+    mov ah, 02h      
     int 21h
-    jmp exit           ; End program
+    jmp exit          
 
 not_letter:
     lea dx, newline
@@ -60,7 +60,7 @@ not_letter:
     mov ah, 09h
     int 21h
     mov dx, offset newline
-    mov ah, 09h        ; Display newline
+    mov ah, 09h       
     int 21h
 
     mov dx, offset newline
@@ -72,6 +72,6 @@ not_letter:
     int 21h
 
 exit:
-    mov ax, 4C00h      ; Terminate program
+    mov ax, 4C00h      
     int 21h
 end main

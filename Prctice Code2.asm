@@ -12,29 +12,29 @@ main:
     lea si, str
 convert_loop:
     mov al, [si]
-    cmp al, '$'           ; end of string
+    cmp al, '$'          
     je done
 
-    ; Check if AL is uppercase letter (A-Z: 65-90)
+
     cmp al, 'A'
     jb check_lower
     cmp al, 'Z'
     ja check_lower
 
-    ; Toggle bit 5 (0x20) to make uppercase to lowercase
+
     xor al, 20h
     mov [si], al
     inc si
     jmp convert_loop
 
 check_lower:
-    ; Check if AL is lowercase letter (a-z: 97-122)
+
     cmp al, 'a'
     jb next_char
     cmp al, 'z'
     ja next_char
 
-    ; Toggle bit 5 to make lowercase to uppercase
+ 
     xor al, 20h
     mov [si], al
 

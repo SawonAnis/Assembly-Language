@@ -23,16 +23,13 @@ main:
     cmp al, 9
     jg invalid_input
 
-    ; Check if al is power of two
-    ; power of two: n != 0 and (n & (n-1)) == 0
-
-    cmp al, 0
+ cmp al, 0
     je not_power
 
     mov bl, al
-    dec bl             ; bl = al - 1
+    dec bl           
 
-    and al, bl         ; al = al & (al - 1)
+    and al, bl        
     cmp al, 0
     je power
     jmp not_power

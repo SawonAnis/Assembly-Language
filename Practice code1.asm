@@ -11,24 +11,24 @@ main:
     mov ax, @data
     mov ds, ax
 
-    ; Prompt user
+
     lea dx, prompt
     mov ah, 09h
     int 21h
 
-    ; Read a character
+
     mov ah, 01h
     int 21h
-    sub al, '0'           ; convert ASCII to number (only 0-9 here)
+    sub al, '0'        
 
-    ; For simplicity, let's assume user enters only one digit 0-9
+
     mov input, al
 
-    ; Mask for even bits: 01010101b = 0x55
+  
     mov al, input
-    and al, 55h           ; isolate even bits
+    and al, 55h      
 
-    cmp al, 55h           ; check if all even bits are set
+    cmp al, 55h          
     je AllSet
 
 NotAllSet:
